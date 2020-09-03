@@ -1,0 +1,320 @@
+<html><head>
+<title>Page Title</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.57.0/codemirror.min.css" integrity="sha512-/BlxZbYLtYGExexketXsTi47eHp+r2kTeq2OHecQPZlfbc7WFXVrwbVW9HOYjI6c9Ti+P60ASmVLxittZ0EBGw==" crossorigin="anonymous">
+</head>
+<body>
+
+<h1>Main Activity</h1>
+<textarea id="1">public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recView);
+
+        CropAdapter adapter = new CropAdapter();
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+    }
+
+}</textarea>
+
+
+<h1>DBHandler</h1>
+<textarea id="2">DBHandler
+
+public class DBHandler {
+
+    private static ArrayList<CropYield> cropYields;
+
+    private DBHandler() {
+        cropYields = new ArrayList<CropYield>();
+
+
+            CropYield cropYield = new CropYield("junene " , "Vid " , true);
+        cropYields.add(cropYield);
+        CropYield cropYield1 = new CropYield("brane" , "Vid " , true);
+        cropYields.add(cropYield1);
+        CropYield cropYield2 = new CropYield("seene" , "Vid " , true);
+        cropYields.add(cropYield2);
+
+    }
+
+    public static ArrayList<CropYield> GetCropYields()
+    {
+        if (cropYields == null)
+        {
+            new DBHandler();
+        }
+
+        return cropYields;
+    }
+}
+</textarea>
+
+
+<h1>CropYield</h1>
+<textarea id="3">public class CropYield {
+
+    private String name;
+    private String type;
+    private boolean isWaiting;
+
+    public CropYield(String name, String type, boolean isWaiting) {
+        this.name = name;
+        this.type = type;
+        this.isWaiting = isWaiting;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public boolean isWaiting() {
+        return isWaiting;
+    }
+
+    public void setWaiting(boolean waiting) {
+        isWaiting = waiting;
+    }
+
+}</textarea>
+
+
+<h1>DBHandler</h1>
+<textarea id="4">public class CropYield {
+
+    private String name;
+    private String type;
+    private boolean isWaiting;
+
+    public CropYield(String name, String type, boolean isWaiting) {
+        this.name = name;
+        this.type = type;
+        this.isWaiting = isWaiting;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public boolean isWaiting() {
+        return isWaiting;
+    }
+
+    public void setWaiting(boolean waiting) {
+        isWaiting = waiting;
+    }
+
+}</textarea>
+
+<h1>CropHolder</h1>
+<textarea id="5">public class CropHolder extends RecyclerView.ViewHolder {
+
+    private TextView nameTextView;
+    private TextView typeTextView;
+    private TextView isActiveTextView;
+    private Button backButton;
+    private Button startButton;
+    private Button actionButton;
+
+    private Boolean isOpen;
+
+    public CropHolder(@NonNull View itemView) {
+        super(itemView);
+
+        this.nameTextView = itemView.findViewById(R.id.nameTextView);
+        this.typeTextView = itemView.findViewById(R.id.typeTextView);
+        this.isActiveTextView = itemView.findViewById(R.id.isActiveTextView);
+
+        this.backButton = itemView.findViewById(R.id.backButton);
+        this.startButton = itemView.findViewById(R.id.startButton);
+        this.actionButton = itemView.findViewById(R.id.actionButton);
+
+        this.isOpen = false;
+
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isOpen == false) {
+                    backButton.setVisibility(View.VISIBLE);
+                    startButton.setVisibility(View.VISIBLE);
+                    isOpen = true;
+                }
+                else {
+                    backButton.setVisibility(View.INVISIBLE);
+                    startButton.setVisibility(View.INVISIBLE);
+                    actionButton.setVisibility(View.INVISIBLE);
+                    isOpen = false;
+                }
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                backButton.setVisibility(View.INVISIBLE);
+                startButton.setVisibility(View.INVISIBLE);
+                actionButton.setVisibility(View.INVISIBLE);
+                isOpen = false;
+            }
+        });
+
+        startButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isActiveTextView.setText("Active");
+                backButton.setVisibility(View.INVISIBLE);
+                startButton.setVisibility(View.INVISIBLE);
+                actionButton.setVisibility(View.VISIBLE);
+
+
+            }
+        });
+
+        actionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nameTextView.setVisibility(View.GONE);
+                typeTextView.setVisibility(View.GONE);
+                isActiveTextView.setVisibility(View.GONE);
+
+                backButton.setVisibility(View.GONE);
+                startButton.setVisibility(View.GONE);
+                actionButton.setVisibility(View.GONE);
+
+                
+            }
+        });
+    }
+
+    public TextView getNameTextView() {
+        return nameTextView;
+    }
+
+    public void setNameTextView(String nameTextView) {
+        this.nameTextView.setText(nameTextView);
+    }
+
+    public TextView getTypeTextView() {
+        return typeTextView;
+    }
+
+    public void setTypeTextView(String typeTextView) {
+        this.typeTextView.setText(typeTextView);
+    }
+
+    public TextView getIsActiveTextView() {
+        return isActiveTextView;
+    }
+
+    public void setIsActiveTextView(String isActiveTextView) {
+        this.isActiveTextView.setText(isActiveTextView);
+    }
+
+    public Button getBackButton() {
+        return backButton;
+    }
+
+    public void setBackButton(Button backButton) {
+        this.backButton = backButton;
+    }
+
+    public Button getStartButton() {
+        return startButton;
+    }
+
+    public void setStartButton(Button startButton) {
+        this.startButton = startButton;
+    }
+
+    public Button getActionButton() {
+        return actionButton;
+    }
+
+    public void setActionButton(Button actionButton) {
+        this.actionButton = actionButton;
+    }
+}</textarea>
+
+
+<h1>CropAdapter</h1>
+<textarea id="6">public class CropAdapter extends RecyclerView.Adapter<CropHolder> {
+
+    @NonNull
+    @Override
+    public CropHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Context context = parent.getContext();
+        LayoutInflater inflater = LayoutInflater.from(context);
+
+        View currView = inflater.inflate(R.layout.custom_layout, parent, false);
+
+        CropHolder holder = new CropHolder((currView));
+
+        return holder;
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull CropHolder holder, int position) {
+        CropYield currCrop = DBHandler.GetCropYields().get(position);
+        holder.setNameTextView(currCrop.getName());
+        holder.setTypeTextView(currCrop.getType());
+        if (currCrop.isWaiting() == true) {
+            holder.setIsActiveTextView("Waiting");
+        } else {
+            holder.setIsActiveTextView("Active");
+        }
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return DBHandler.GetCropYields().size();
+    }
+}
+</textarea>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.57.0/codemirror.min.js" integrity="sha512-K8GMktcEqOI28I3f5C6kraFm1F4wVLvnBxGU+imS/zOLT1COAT799Ln4DJyAbpdyNt6LgMIWcwy4ptCYXCIDqA==" crossorigin="anonymous"></script>
+
+<script>
+    for(let i = 1; i < 7; i++)
+    {
+    let cm = CodeMirror.fromTextArea(document.getElementById(i.toString()), {
+                lineNumbers: true,
+                matchBrackets: true,
+                readOnly: true,
+                lineWrapping: true,
+            });
+            cm.setSize("100%", "100%");
+    }
+    
+</script>
+</body></html>
