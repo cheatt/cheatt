@@ -108,37 +108,7 @@ public class DBHandler {
     }
 
 }</textarea>
-
-
-<h1>DBHandler</h1>
-<textarea id="4">public class DBHandler {
-
-    private static ArrayList<CropYield> cropYields;
-
-    private DBHandler() {
-        cropYields = new ArrayList<CropYield>();
-
-
-            CropYield cropYield = new CropYield("junene " , "Vid " , true);
-        cropYields.add(cropYield);
-        CropYield cropYield1 = new CropYield("brane" , "Vid " , true);
-        cropYields.add(cropYield1);
-        CropYield cropYield2 = new CropYield("seene" , "Vid " , true);
-        cropYields.add(cropYield2);
-
-    }
-
-    public static ArrayList<CropYield> GetCropYields()
-    {
-        if (cropYields == null)
-        {
-            new DBHandler();
-        }
-
-        return cropYields;
-    }
-}</textarea>
-
+    
 <h1>CropHolder</h1>
 <textarea id="5">public class CropHolder extends RecyclerView.ViewHolder {
 
