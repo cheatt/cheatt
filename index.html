@@ -97,42 +97,32 @@ public class DBHandler {
 
 
 <h1>DBHandler</h1>
-<textarea id="4">public class CropYield {
+<textarea id="4">public class DBHandler {
 
-    private String name;
-    private String type;
-    private boolean isWaiting;
+    private static ArrayList<CropYield> cropYields;
 
-    public CropYield(String name, String type, boolean isWaiting) {
-        this.name = name;
-        this.type = type;
-        this.isWaiting = isWaiting;
+    private DBHandler() {
+        cropYields = new ArrayList<CropYield>();
+
+
+            CropYield cropYield = new CropYield("junene " , "Vid " , true);
+        cropYields.add(cropYield);
+        CropYield cropYield1 = new CropYield("brane" , "Vid " , true);
+        cropYields.add(cropYield1);
+        CropYield cropYield2 = new CropYield("seene" , "Vid " , true);
+        cropYields.add(cropYield2);
+
     }
 
-    public String getName() {
-        return name;
-    }
+    public static ArrayList<CropYield> GetCropYields()
+    {
+        if (cropYields == null)
+        {
+            new DBHandler();
+        }
 
-    public void setName(String name) {
-        this.name = name;
+        return cropYields;
     }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public boolean isWaiting() {
-        return isWaiting;
-    }
-
-    public void setWaiting(boolean waiting) {
-        isWaiting = waiting;
-    }
-
 }</textarea>
 
 <h1>CropHolder</h1>
