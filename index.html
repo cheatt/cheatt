@@ -277,7 +277,7 @@ public class DBHandler {
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.57.0/codemirror.min.js" integrity="sha512-K8GMktcEqOI28I3f5C6kraFm1F4wVLvnBxGU+imS/zOLT1COAT799Ln4DJyAbpdyNt6LgMIWcwy4ptCYXCIDqA==" crossorigin="anonymous"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.57.0/mode/clike/clike.min.js" integrity="sha512-HT3t3u7HfQ7USbSZa0Tk5caEnUfO8s58OWqMBwm96xaZAbA17rpnXXHDefR8ixVmSSVssbOv3W3OMh6mNX/XuQ==" crossorigin="anonymous"></script>
 <script>
     for(let i = 1; i < 7; i++)
     {
@@ -286,6 +286,7 @@ public class DBHandler {
                 matchBrackets: true,
                 readOnly: true,
                 lineWrapping: true,
+        mode: 'text/x-java'
             });
             //cm.setSize("100%", "100%");
     }
